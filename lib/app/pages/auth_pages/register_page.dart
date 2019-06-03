@@ -35,7 +35,6 @@ class RegisterPageState extends State<RegisterPage> {
     _passwordController = new TextEditingController();
     _roleController = 'customer';
     _nameController = new TextEditingController();
-    // String authToken = Store.getToken(_sharedPreferences);
   }
 
   _fetchSessionAndNavigate() async {
@@ -83,9 +82,6 @@ class RegisterPageState extends State<RegisterPage> {
     if (_roleController.isEmpty) {
       valid = false;
       _phoneError = "phone can't be blank!";
-      // } else if (_phoneController.text.length < 6) {
-      //   valid = false;
-      //   _phoneError = "Password is invalid!";
     }
 
     return valid;
@@ -108,14 +104,6 @@ class RegisterPageState extends State<RegisterPage> {
     });
   }
 
-  // _fetchSessionAndNavigate() async {
-  //   _sharedPreferences = await _prefs;
-  //   String authToken = Store.getToken(_sharedPreferences);
-  //   if (authToken != null) {
-  //     Navigator.of(_scaffoldKey.currentContext).pushReplacementNamed('/home');
-  //   }
-  // }
-
   _registerInit() async {
     _showLoading();
     if (_valid()) {
@@ -133,10 +121,7 @@ class RegisterPageState extends State<RegisterPage> {
             _scaffoldKey, 'User already exists, please sign up a new user');
       } else {
         Store.setDetails(_sharedPreferences, responseJson);
-        /**
-				 * Removes stack and start with the new page.
-				 * In this case on press back on HomePage app will exit.
-	await			 * **/
+
         Navigator.of(_scaffoldKey.currentContext).pushReplacementNamed('/home');
       }
       _hideLoading();
@@ -167,7 +152,7 @@ class RegisterPageState extends State<RegisterPage> {
             ),
             Container(
               padding: EdgeInsets.fromLTRB(30.0, 165.0, 0.0, 0.0),
-              child: Text('welcome to errned',
+              child: Text('welcome to errnd',
                   style: TextStyle(
                       fontSize: 15.0,
                       fontWeight: FontWeight.normal,
@@ -187,11 +172,6 @@ class RegisterPageState extends State<RegisterPage> {
           ),
           new EmailField(
               emailController: _emailController, emailError: _emailError),
-          // new NumberField(
-          //   numberController: _phoneController,
-          //   numberError: _phoneError,
-          //   labelName: 'Phone No',
-          // ),
           new PasswordField(
             passwordController: _passwordController,
             obscureText: _obscureText,
@@ -201,10 +181,6 @@ class RegisterPageState extends State<RegisterPage> {
           new Row(
               // mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                // new Text(
-                //   "sign up as  ",
-                //   style: TextStyle(fontFamily: 'CircularStd'),
-                // ),
                 new Text(
                   'Customer',
                   style: TextStyle(
