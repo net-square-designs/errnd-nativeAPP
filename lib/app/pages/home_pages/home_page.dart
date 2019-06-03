@@ -1,8 +1,10 @@
 import 'package:errnd/app/api/auth_api.dart';
 import 'package:errnd/app/components/button.dart';
+import 'package:errnd/app/components/topnav.dart';
 import 'package:errnd/app/components/ui.dart';
 import 'package:errnd/app/store.dart';
 import 'package:errnd/app/utils/http.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -71,19 +73,211 @@ class HomePageState extends State<HomePage> {
     Auth.logoutUser(_scaffoldKey.currentContext, _sharedPreferences);
   }
 
+  Widget _appBar() {
+    return new AppBar(
+      title: Text(
+        'errnd',
+        style: TextStyle(
+          color: Colors.deepPurple[500],
+          fontSize: 30.0,
+        ),
+      ),
+      iconTheme: IconThemeData(color: Colors.deepPurple[500], size: 100.0),
+      centerTitle: true,
+      elevation: 0,
+      brightness: Brightness.light,
+      bottomOpacity: 0,
+      backgroundColor: Colors.grey[200],
+    );
+  }
+
+  Widget _sideBar() {
+    return new Drawer(
+      elevation: 16,
+      child: new ListView(
+        children: <Widget>[
+          new Container(
+            // color: Colors.white,
+            padding: EdgeInsets.fromLTRB(15, 10.0, 0.0, 10.0),
+            child: new Row(children: <Widget>[
+              new Image.asset(
+                'lib/app/assets/pp.png',
+                width: 60,
+                height: 60,
+              ),
+              new Container(
+                  padding: EdgeInsets.fromLTRB(15, 0.0, 0.0, 0.0),
+                  child: new Row(children: <Widget>[
+                    new Column(
+                      children: <Widget>[
+                        new Container(
+                            padding: EdgeInsets.fromLTRB(0, 0.0, 90.0, 0),
+                            child: new Row(children: <Widget>[
+                              new Text("Daniel Fayemi",
+                                  style: TextStyle(
+                                      height: 2,
+                                      color: Colors.black87,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w100))
+                            ])),
+                        new Container(
+                            padding: EdgeInsets.fromLTRB(0, 0.0, 40.0, 0),
+                            child: new Row(children: <Widget>[
+                              Text("danieltosinfayemi@gmail.com",
+                                  style: TextStyle(
+                                      color: Colors.black54,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w100))
+                            ])),
+                        new Container(
+                            // alignment: Alignment(10.0, 10.0),
+                            padding: EdgeInsets.fromLTRB(0, 5.0, 135.0, 0),
+                            child: Text("Edit Profile",
+                                style: TextStyle(
+                                    color: Colors.deepPurple[500],
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w100))),
+                      ],
+                    )
+                  ]))
+            ]),
+          ),
+          Divider(),
+          InkWell(
+              onTap: () {},
+              child: ListTile(
+
+                title: Text(
+                  'Home',
+                  style: TextStyle(fontSize: 21),
+                ),
+                leading: Icon(
+                  Icons.home,
+                  size: 30.0,
+                  color: Colors.black,
+                ),
+              )),
+          InkWell(
+              onTap: () {},
+              child: ListTile(
+                title: Text(
+                  'Messages',
+                  style: TextStyle(fontSize: 21),
+                ),
+                leading: Icon(
+                  Icons.message,
+                  size: 30.0,
+                  color: Colors.black,
+                ),
+              )),
+          InkWell(
+              onTap: () {},
+              child: ListTile(
+                title: Text(
+                  'Notifications',
+                  style: TextStyle(fontSize: 21),
+                ),
+                leading: Icon(
+                  Icons.notifications,
+                  size: 30.0,
+                  color: Colors.black,
+                ),
+              )),
+          InkWell(
+              onTap: () {},
+              child: ListTile(
+                title: Text(
+                  'Bookmarks',
+                  style: TextStyle(fontSize: 21),
+                ),
+                leading: Icon(
+                  Icons.bookmark,
+                  size: 30.0,
+                  color: Colors.black,
+                ),
+              )),
+          Divider(),
+          InkWell(
+              onTap: () {},
+              child: ListTile(
+                title: Text(
+                  'Post an Errand',
+                  style: TextStyle(fontSize: 21),
+                ),
+                leading: Icon(
+                  Icons.content_paste,
+                  size: 30.0,
+                  color: Colors.black,
+                ),
+              )),
+          InkWell(
+              onTap: () {},
+              child: ListTile(
+                title: Text(
+                  'Manage Orders',
+                  style: TextStyle(fontSize: 21),
+                ),
+                leading: Icon(
+                  Icons.list,
+                  size: 30.0,
+                  color: Colors.black,
+                ),
+              )),
+          Divider(),
+          InkWell(
+              onTap: () {},
+              child: ListTile(
+                title: Text(
+                  'Settings',
+                  style: TextStyle(fontSize: 21),
+                ),
+                leading: Icon(
+                  Icons.settings,
+                  size: 30.0,
+                  color: Colors.black,
+                ),
+              )),
+          InkWell(
+              onTap: () {},
+              child: ListTile(
+                title: Text(
+                  'Help',
+                  style: TextStyle(fontSize: 21),
+                ),
+                leading: Icon(
+                  Icons.help_outline,
+                  size: 30.0,
+                  color: Colors.black,
+                ),
+              )),
+          InkWell(
+            highlightColor: Colors.red,
+            child: Container(
+              color: Colors.black,
+            ),
+          ),
+
+          // ListTile(
+
+          // )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+        backgroundColor: Colors.grey[200],
         key: _scaffoldKey,
-        appBar: new AppBar(
-          backgroundColor: Colors.deepPurple[700],
-          title: new Text('Errnd'),
-        ),
+        appBar: _appBar(),
+        drawer: _sideBar(),
         body: new Container(
           margin: const EdgeInsets.symmetric(horizontal: 16.0),
           child: new Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
+                // new TopNav(),
                 Container(
                   padding: EdgeInsets.fromLTRB(0, 15.0, 0.0, 0.0),
                   child: Text('$_welcomeMes!',

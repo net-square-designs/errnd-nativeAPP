@@ -67,7 +67,8 @@ flutter:
           - asset: fonts/CircularStd-Book.otf
             style: italic
   assets:
-    - lib/app/assets/logo.png         
+    - lib/app/assets/logo.png
+    - lib/app/assets/pp.png          
   # fonts:
   #   - family: Schyler
   #     fonts:
