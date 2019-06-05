@@ -30,8 +30,9 @@ class SplashScreenState extends State<SplashScreen> {
     String authToken = Store.getToken(_sharedPreferences);
     if (authToken != null) {
       Navigator.of(context).pushReplacementNamed('/home');
+    } else if (authToken == null) {
+      Navigator.of(context).pushReplacementNamed('/login');
     }
-    Navigator.of(context).pushReplacementNamed('/login');
   }
 
   @override
@@ -49,8 +50,14 @@ class SplashScreenState extends State<SplashScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                padding: EdgeInsets.fromLTRB(30.0, 195.0, 0.0, 0.0),
-                child: new Image.asset('lib/app/assets/logo.png'),
+                alignment: Alignment.center,
+                padding: EdgeInsets.fromLTRB(0.0, 400.0, 0.0, 0.0),
+                child: new Image.asset(
+                  'lib/app/assets/logo.png',
+                  width: 90,
+                  height: 60,
+                  alignment: Alignment.center,
+                ),
                 // Container(
                 //   padding: EdgeInsets.fromLTRB(140.0, 380.0, 0.0, 0.0),
                 //   child: Text('Errnd',

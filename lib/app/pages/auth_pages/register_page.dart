@@ -274,6 +274,7 @@ class RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+        resizeToAvoidBottomInset: false,
         key: _scaffoldKey,
         body: _isLoading ? _loadingScreen() : _registerScreen());
   }

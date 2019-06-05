@@ -13,6 +13,7 @@ class CustomButton extends StatelessWidget {
         padding: EdgeInsets.only(left: 30.0, right: 30.0),
         margin: const EdgeInsets.symmetric(vertical: 12.0),
         child: new Material(
+            shadowColor: Colors.grey,
             elevation: 5.0,
             child: new MaterialButton(
                 color: Colors.deepPurple[700],
@@ -22,3 +23,17 @@ class CustomButton extends StatelessWidget {
                 onPressed: onPressed)));
   }
 }
+
+// new Container(
+//   padding: const EdgeInsets.all(8.0),
+//   child: new Text(
+//     '$_authToken',
+//     style: new TextStyle(
+//         fontSize: 24.0, color: Colors.grey.shade700),
+//   ),
+// ),
+
+// new CustomButton(
+//   onPressed: _logout,
+//   buttonName: 'Logout',
+// ),

@@ -68,7 +68,10 @@ flutter:
             style: italic
   assets:
     - lib/app/assets/logo.png
-    - lib/app/assets/pp.png          
+    - lib/app/assets/pp.png
+    - lib/app/assets/leee.jpg       
+    - lib/app/assets/pic1.jpeg
+    - lib/app/assets/pic2.png         
   # fonts:
   #   - family: Schyler
   #     fonts:

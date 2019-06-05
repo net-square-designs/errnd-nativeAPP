@@ -29,4 +29,6 @@ class Store {
     prefs.setString(loginMessage, message);
     // prefs.setString(nameKey, user['name']);
   }
+
+  static setUserDetails(SharedPreferences prefs, var response) {}
 }
