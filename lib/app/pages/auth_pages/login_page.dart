@@ -1,4 +1,5 @@
 import 'package:errnd/app/api/auth_api.dart';
+import 'package:errnd/app/api/user_api.dart';
 import 'package:errnd/app/components/button.dart';
 import 'package:errnd/app/components/email_field.dart';
 import 'package:errnd/app/components/error_box.dart';
@@ -89,15 +90,27 @@ class LoginPageState extends State<LoginPage> {
         UI.showSnackBar(_scaffoldKey, null);
       } else if (responseJson['status'] == 401) {
         UI.showSnackBar(_scaffoldKey, 'Invalid Email/Password');
+      } else if (responseJson['status'] == 404) {
+        UI.showSnackBar(_scaffoldKey, 'Invalid Account');
       } else {
         Store.setDetails(_sharedPreferences, responseJson);
-        // var data = responseJson['data']['token'];
-        // print(data);
-        /**
-				 * Removes stack and start with the new page.
-				 * In this case on press back on HomePage app will exit.
-				 * **/
-        Navigator.of(_scaffoldKey.currentContext).pushReplacementNamed('/home');
+
+        var userresponseJson = await UserApi.getUser(responseJson);
+        print(userresponseJson);
+
+        if (userresponseJson == null) {
+          UI.showSnackBar(_scaffoldKey, 'Something went wrong!');
+        } else if (userresponseJson == 'NetworkError') {
+          UI.showSnackBar(_scaffoldKey, null);
+        } else if (userresponseJson['status'] == 401) {
+          UI.showSnackBar(_scaffoldKey, 'Invalid Email/Password');
+        } else if (userresponseJson['status'] == 404) {
+          UI.showSnackBar(_scaffoldKey, 'Invalid Account');
+        } else {
+          Store.setUserDetails(_sharedPreferences, userresponseJson);
+          Navigator.of(_scaffoldKey.currentContext)
+              .pushReplacementNamed('/home');
+        }
       }
       _hideLoading();
     } else {

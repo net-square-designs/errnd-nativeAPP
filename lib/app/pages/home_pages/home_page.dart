@@ -20,7 +20,13 @@ class HomePageState extends State<HomePage> {
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   var names = new List<String>();
   SharedPreferences _sharedPreferences;
-  var _authToken, _welcomeMes;
+  var _authToken,
+      _welcomeMes,
+      _username,
+      _userEmail,
+      _userRole,
+      _userId,
+      roleText;
 
   _list() {
     names.add("Joe");
@@ -49,13 +55,23 @@ class HomePageState extends State<HomePage> {
     _sharedPreferences = await _prefs;
     var authToken = _sharedPreferences.getString(Store.authTokenKey);
     var welcomeMes = _sharedPreferences.getString(Store.loginMessage);
+    var username = _sharedPreferences.getString(Store.userUsername);
+    var userEmail = _sharedPreferences.getString(Store.userEmail);
+    var userRole = _sharedPreferences.getString(Store.userRole);
+    var userId = _sharedPreferences.getInt(Store.userId);
 
     UI.showSnackBarSuccess(_scaffoldKey, welcomeMes);
 
     setState(() {
       _authToken = authToken;
       _welcomeMes = welcomeMes;
+      _username = username;
+      _userEmail = userEmail;
+      _userRole = userRole;
+      _userId = userId;
     });
+
+    _reverseRoleName();
 
     if (_authToken == null) {
       _logout();
@@ -66,6 +82,26 @@ class HomePageState extends State<HomePage> {
     Auth.logoutUser(_scaffoldKey.currentContext, _sharedPreferences);
   }
 
+  fetchUserProfile() {}
+
+  _reverseRoleName() {
+    if (_userRole == 'customer') {
+      roleText = "runner";
+      // return ;
+    } else if (_userRole == 'runner') {
+      roleText = "customer";
+      // return "customer";
+    }
+  }
+
+  _choseRoleSwitch() {
+    if (_userRole == 'customer') {
+      return;
+    } else if (_userRole == 'runner') {
+      return;
+    }
+  }
+
   Widget _appBar() {
     return new AppBar(
       title: new Image.asset(
@@ -73,6 +109,15 @@ class HomePageState extends State<HomePage> {
         width: 90,
         height: 60,
       ),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.exit_to_app),
+          tooltip: 'logout',
+          onPressed: () {
+            _logout();
+          },
+        ),
+      ],
       iconTheme: IconThemeData(color: Colors.deepPurple[500], size: 100.0),
       actionsIconTheme: IconThemeData(size: 90),
       centerTitle: true,
@@ -119,7 +164,7 @@ class HomePageState extends State<HomePage> {
 
                                   // padding: EdgeInsets.fromLTRB(0, 0.0, 90.0, 0),
                                   child: new Row(children: <Widget>[
-                                    new Text("Daniel Fayemi",
+                                    new Text("$_username",
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
                                             height: 2,
@@ -134,7 +179,7 @@ class HomePageState extends State<HomePage> {
                               new Container(
                                   // margin: EdgeInsets.only(top: 5),
                                   child: new Row(children: <Widget>[
-                                Text("danieltosinfayemi@gmail.com",
+                                Text("$_userEmail",
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                         color: Colors.black54,
@@ -405,7 +450,7 @@ class HomePageState extends State<HomePage> {
                           onTap: () {},
                           child: ListTile(
                             title: Text(
-                              'Switch to Runner Mode',
+                              'Switch to $roleText Mode',
                               style:
                                   TextStyle(fontSize: 21, color: Colors.white),
                             ),
@@ -447,7 +492,7 @@ class HomePageState extends State<HomePage> {
                               new Row(
                                 children: <Widget>[
                                   new Text(
-                                    'Hi Daniel!',
+                                    'Hi $_username!',
                                     style: TextStyle(
                                         color: Colors.deepPurple[700],
                                         fontSize: 20,

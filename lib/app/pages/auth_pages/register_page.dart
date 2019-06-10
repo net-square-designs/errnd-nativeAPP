@@ -121,6 +121,7 @@ class RegisterPageState extends State<RegisterPage> {
             _scaffoldKey, 'User already exists, please sign up a new user');
       } else {
         Store.setDetails(_sharedPreferences, responseJson);
+        Store.setUserDetails(_sharedPreferences, responseJson);
 
         Navigator.of(_scaffoldKey.currentContext).pushReplacementNamed('/home');
       }

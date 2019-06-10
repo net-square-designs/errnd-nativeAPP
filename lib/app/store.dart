@@ -1,3 +1,4 @@
+import 'package:errnd/app/utils/decode_bit64.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Store {
@@ -8,6 +9,14 @@ class Store {
   static final String roleKey = 'role';
   static final String loginMessage = 'message';
 
+  //user details
+  static final String userUsername = 'user_username';
+  static final String userEmail = 'user_email';
+  static final String userRole = 'user_role';
+  static final String userId = 'user_id';
+
+  static final String firstname = 'firstname';
+
   //store getters
   static String getToken(SharedPreferences prefs) {
     return prefs.getString(authTokenKey);
@@ -17,8 +26,7 @@ class Store {
 
   static setToken(SharedPreferences prefs, var response) {
     var token = response['data']['token'];
-    print(authTokenKey);
-    print(token);
+
     prefs.setString(authTokenKey, token);
   }
 
@@ -27,8 +35,17 @@ class Store {
     prefs.setString(authTokenKey, token);
     var message = response['data']['message'];
     prefs.setString(loginMessage, message);
-    // prefs.setString(nameKey, user['name']);
+    final dd = Decode().parseJwt(token);
+    prefs.setString(userUsername, dd['username']);
   }
 
-  static setUserDetails(SharedPreferences prefs, var response) {}
+  static setUserDetails(SharedPreferences prefs, var response) {
+    final userDetail = response['data']['user'];
+    prefs.setString(userEmail, userDetail['email']);
+    // prefs.setString(userUsername, userDetail['username']);
+    prefs.setString(userRole, userDetail['role']);
+    prefs.setInt(userId, userDetail['userId']);
+    prefs.setString(firstname, userDetail['firstname']);
+    print(firstname);
+  }
 }
