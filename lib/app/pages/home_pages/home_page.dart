@@ -141,13 +141,16 @@ class HomePageState extends State<HomePage> {
               children: <Widget>[
                 new Container(
                   // color: Colors.white,
-                  padding: EdgeInsets.only(left: 20, top: 30),
+                  padding: EdgeInsets.only(left: 20, top: 10),
                   child: new Row(children: <Widget>[
                     new Column(children: <Widget>[
-                      new Image.asset(
-                        'lib/app/assets/pp.png',
-                        width: 60,
-                        height: 60,
+                      new Container(
+                        padding: EdgeInsets.only(top: 20),
+                        child: new Image.asset(
+                          'lib/app/assets/pp.png',
+                          width: 60,
+                          height: 60,
+                        ),
                       ),
                     ]),
                     new Container(
@@ -485,39 +488,46 @@ class HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      new Container(
-                          padding: EdgeInsets.only(top: 2, left: 20),
-                          child: new Column(
-                            children: <Widget>[
-                              new Row(
+                      new Material(
+                        shadowColor: Colors.grey,
+                        color: Colors.grey[100],
+                        child: new Column(children: <Widget>[
+                          new Container(
+                              padding: EdgeInsets.only(top: 2, left: 20),
+                              child: new Column(
                                 children: <Widget>[
-                                  new Text(
-                                    'Hi $_username!',
-                                    style: TextStyle(
-                                        color: Colors.deepPurple[700],
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
+                                  new Row(
+                                    children: <Widget>[
+                                      new Text(
+                                        'Hi $_username!',
+                                        style: TextStyle(
+                                            color: Colors.deepPurple[700],
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                  new Row(
+                                    children: <Widget>[
+                                      new Container(
+                                          padding: EdgeInsets.only(bottom: 10),
+                                          child: new Text(
+                                            'What would you like to do',
+                                            style: TextStyle(
+                                                color: Colors.grey[400],
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w200),
+                                          ))
+                                    ],
                                   ),
                                 ],
-                              ),
-                              new Row(
-                                children: <Widget>[
-                                  new Container(
-                                      padding: EdgeInsets.only(bottom: 10),
-                                      child: new Text(
-                                        'What would you like to do',
-                                        style: TextStyle(
-                                            color: Colors.grey[400],
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w200),
-                                      ))
-                                ],
-                              ),
-                            ],
-                          )),
-                      new Container(
-                          padding: EdgeInsets.only(bottom: 15),
-                          child: new SearchBar()),
+                              )),
+                          new Container(
+                              padding: EdgeInsets.only(bottom: 15),
+                              child: new SearchBar()),
+                        ]),
+                      ),
+
                       new Expanded(
                         // padding: EdgeInsets.only(top: 100),
                         child: Builder(

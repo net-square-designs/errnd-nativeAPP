@@ -127,105 +127,75 @@ class PostBody extends StatelessWidget {
                     bottomLeft: Radius.circular(25),
                     bottomRight: Radius.circular(25),
                   )),
-                  child: new Column(
+                  child: new Stack(
                     children: <Widget>[
-                      new Row(
-                        children: <Widget>[
-                          new Column(
-                            children: <Widget>[
-                              new Container(
-                                  //color: Colors.greenAccent,
-                                  height: 80,
-                                  width: 207,
-                                  padding: EdgeInsets.only(
-                                    top: 7,
+                      new Positioned(
+                          left: 15,
+                          top: 10,
+                          child: new Container(
+                              margin: EdgeInsets.only(left: 5),
+                              width: 200,
+                              child: new Text(
+                                "I can Make your watches at very affordable prices ASAP with discounts and lost of quality and this can mean a lot of thing to the person",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500),
+                              ))),
+                      new Positioned(
+                        left: 15,
+                        top: 70,
+                        child: new Container(
+                            margin: EdgeInsets.only(top: 5, left: 10),
+                            width: 190,
+                            child: new Text(
+                              "From N15,000",
+                              style: TextStyle(
+                                  color: Colors.blue[300],
+                                  fontWeight: FontWeight.bold),
+                            )),
+                      ),
+                      new Positioned(
+                        left: 220,
+                        top: 10,
+                        child: new Row(
+                          children: <Widget>[
+                            RaisedButton(
+                                highlightColor: Colors.grey[200],
+                                elevation: 1,
+                                textColor: Colors.white,
+                                color: Colors.white,
+                                child: new Row(children: <Widget>[
+                                  new Icon(
+                                    Icons.message,
+                                    size: 18.0,
+                                    color: Colors.deepPurple[700],
                                   ),
-                                  // color: Colors.green,
-                                  child: new Column(
-                                    children: <Widget>[
-                                      new Row(
-                                        children: <Widget>[
-                                          new Container(
-                                              margin: EdgeInsets.only(left: 5),
-                                              width: 200,
-                                              child: new Text(
-                                                "I can Make your watches at very affordable prices ASAP with discounts and lost of quality",
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ))
-                                        ],
-                                      ),
-                                      new Row(
-                                        children: <Widget>[
-                                          new Container(
-                                              margin: EdgeInsets.only(
-                                                  top: 5, left: 10),
-                                              width: 190,
-                                              child: new Text(
-                                                "From N15,000",
-                                                style: TextStyle(
-                                                    color: Colors.blue[300],
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ))
-                                        ],
-                                      )
-                                    ],
-                                  ))
-                            ],
-                          ),
-                          new Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              new Row(
-                                children: <Widget>[
-                                  RaisedButton(
-                                      highlightColor: Colors.grey[200],
-                                      elevation: 1,
-                                      textColor: Colors.white,
-                                      color: Colors.white,
-                                      child: new Row(children: <Widget>[
-                                        new Icon(
-                                          Icons.message,
-                                          size: 18.0,
-                                          color: Colors.deepPurple[700],
-                                        ),
-                                        Text(
-                                          "  Chat",
-                                          style: TextStyle(
-                                              color: Colors.deepPurple[700],
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      ]),
-                                      onPressed: () {},
-                                      shape: new RoundedRectangleBorder(
-                                          borderRadius:
-                                              new BorderRadius.circular(20.0))),
-                                ],
-                              ),
-                              new Row(
-                                children: <Widget>[
-                                  new Container(
-                                      margin: EdgeInsets.only(
-                                        top: 19,
-                                      ),
-                                      child: new Text(
-                                        "   View Details",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            color: Colors.grey[400],
-                                            fontWeight: FontWeight.bold),
-                                      ))
-                                ],
-                              )
-                            ],
-                          )
-                        ],
-                      )
+                                  Text(
+                                    "  Chat",
+                                    style: TextStyle(
+                                        color: Colors.deepPurple[700],
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ]),
+                                onPressed: () {},
+                                shape: new RoundedRectangleBorder(
+                                    borderRadius:
+                                        new BorderRadius.circular(20.0))),
+                          ],
+                        ),
+                      ),
+                      new Positioned(
+                        right: 25,
+                        bottom: 15,
+                        child: new Container(
+                            child: new Text(
+                          "   View Details",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.grey[400],
+                              fontWeight: FontWeight.bold),
+                        )),
+                      ),
                     ],
                   ))
             ]),
