@@ -15,7 +15,7 @@ class UserApi {
   static dynamic getUser(var response) async {
     var decodedToken = Decode().parseJwt(response['data']['token']);
     var username = decodedToken['username'];
-    var uri = host + path.user + username;
+    var uri = host + path.profile + username;
     try {
       final response = await http.get(
         uri,
